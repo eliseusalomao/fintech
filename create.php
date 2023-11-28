@@ -1,21 +1,40 @@
 <?php
-$conexao = new mysqli("localhost", "root", "", "crud_2711");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Configuração da conexão com o banco de dados
+    $host = 'localhost';
+    $dbname = 'crud_2711';
+    $username = 'root';
+    $password = '';
+    try {
+        // Cria uma conexão PDO
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 
-if ($conexao->connect_error) {
-    die("Conexão falhou: " . $conexao->connect_error);
-}
+        // Define o modo de erro do PDO para exceções
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$nome = $_POST['nome'];
-$email = $_POST['email'];
-$telefone = $_POST['telefone'];
+        // Dados do usuário a serem inseridos
+        $nome       = $_POST['nome'];
+        $email      = $_POST['email'];
+        $senha      = $_POST['senha']; // Lembre-se de criptografar a senha antes de armazená-la no banco
 
-$sql = "INSERT INTO registros (nome, email, telefone) VALUES ('$nome', '$email', '$telefone')";
+        // Prepara a instrução SQL para inserção
+        $sql = "INSERT INTO registros (nome, email, senha) VALUES (:nome, :email, :senha)";
+        $stmt = $pdo->prepare($sql);
 
-if ($conexao->query($sql) === TRUE) {
-    echo "Registro inserido com sucesso";
+        // Associa os valores aos parâmetros da instrução
+        $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
+
+        // Executa a instrução SQL
+        $stmt->execute();
+
+        echo "Usuário inserido com sucesso!";
+    } catch (PDOException $e) {
+        echo "Erro: " . $e->getMessage();
+    }
 } else {
-    echo "Erro ao inserir registro: " . $conexao->error;
+    echo "Conexão não estabelecida";
 }
 
-$conexao->close();
 ?>
