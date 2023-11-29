@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Página de Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-login.css">
 </head>
 <body>
+    <div class="master">
     <div class="login-container">
         <h2>Login</h2>
         <form class="login-form" action="processar_login.php" method="post">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
-
+            <input placeholder="Usuário" type="text" id="username" name="username" required>
+            <input placeholder="Senha" type="password" id="password" name="password" required>
+            <a href="create.html">Cadastre-se</a><br>
             <button type="submit">Entrar</button>
+            <h3 id="name-fix">Go Fintech</h3>
         </form>
     </div>
+
+    <div class="background">
+        <img src="_imagens/Background.svg">
+    </div>
+
+    </div>
+
 </body>
 </html>

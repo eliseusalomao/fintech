@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário de Inserção</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-create.css">
 </head>
 <body>
-
-<div class="form-container">
+    <div class="master">
+<div class="create-container">
     <h2>Formulário de Inserção</h2>
-
+    <div class="create-form">
     <form action="create.php" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="senha">Senha:</label>
-        <input type="password" id="password" name="senha" required>
-
-        <input type="submit" value="Inserir">
+        <input placeholder="Nome" type="text" id="nome" name="nome" required><br>
+        <input placeholder="Email" type="email" id="email" name="email" required><br>
+        <input placeholder="Senha" type="password" id="password" name="senha" required><br>
+        <a id="icon-login" href="login.html">Login</a><br>
+        <button type="submit" value="Inserir">Finalizar</button>
+        <h3 id="name-fix">Go Fintech</h3>
     </form>
+    </div>
+</div>
+
+    <div class="Background">
+        <img src="_imagens/Background_create.svg">
+    </div>
 </div>
 
 </body>
